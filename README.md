@@ -26,5 +26,12 @@ status: The mental health condition label (output).
 # Model
 
 **Base Model:** kingabzpro/Llama-3.1-8B-Instruct-Mental-Health-Classification.
+
 **Fine-Tuning:** The model was fine-tuned using the Hugging Face Transformers library to classify text into seven mental health categories:
 Anxiety, Depression, Bipolar, Stress, Normal, Personality Disorder, Suicidal.
+
+# Results
+
+**Accuracy:** 69%
+
+![CM](https://github.com/user-attachments/assets/3691c64b-b4a8-4dce-b478-02bd5e20d3d0)
