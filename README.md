@@ -6,8 +6,6 @@ The workflow includes:
 
 **Data Preprocessing:** Cleaning and preparing the dataset for analysis.
 
-**Loading Model :** Used a pre-trained model for classification tasks. The model used in the project: https://huggingface.co/kingabzpro/Llama-3.1-8B-Instruct-Mental-Health-Classification
-
 **Evaluation:** Generating metrics such as confusion matrix and accuracy to assess performance.
 
 
@@ -26,12 +24,56 @@ status: The mental health condition label (output).
 # Model
 
 **Base Model:** kingabzpro/Llama-3.1-8B-Instruct-Mental-Health-Classification.
-
-**Fine-Tuning:** The model was fine-tuned using the Hugging Face Transformers library to classify text into seven mental health categories:
-Anxiety, Depression, Bipolar, Stress, Normal, Personality Disorder, Suicidal.
+ Used a pre-trained model for classification tasks. The model used in the project: https://huggingface.co/kingabzpro/Llama-3.1-8B-Instruct-Mental-Health-Classification
 
 # Results
 
-**Accuracy:** 69%
+## Accuracy:
 
-![CM](https://github.com/user-attachments/assets/3691c64b-b4a8-4dce-b478-02bd5e20d3d0)
+The overall accuracy of the model is 64.05%, meaning that 64.05% of the predictions match the true labels.
+
+## Classification Report Insights:
+
+**Precision:** Measures how many of the predicted positive samples are correct.
+Highest precision is for "Personality disorder" (1.00), but this might be misleading due to its very low recall.
+Relatively high precision for "Stress" (0.94) and "Suicidal" (0.84).
+
+**Recall:** Measures how many actual positive samples are correctly predicted.
+High recall for "Normal" (0.97) and "Depression" (0.81).
+Extremely low recall for "Personality disorder" (0.04), "Stress" (0.14), and "Suicidal" (0.05).
+
+**F1-score:** Balances precision and recall.
+Best F1-score is for "Normal" (0.82), while other categories have lower scores, especially for underrepresented classes like "Personality disorder."
+
+## Confusion Matrix Observations:
+
+**"Normal" and "Depression" dominate predictions:** "Normal" has the highest number of correct predictions (593), and "Depression" is often correctly classified (494).
+
+**Severe misclassifications for "Suicidal":** Most "Suicidal" cases are misclassified as "Depression" (285 cases).
+
+**Poor performance on minor classes:** Classes like "Personality disorder" and "Stress" suffer from low recall and high misclassification rates, likely due to class imbalance.
+
+# Key Observations:
+
+**Imbalanced Classes:**
+Smaller classes like "Personality disorder" and "Stress" have significantly fewer samples compared to dominant classes like "Depression" and "Normal." This imbalance likely affects recall and the overall performance of the model on these categories.
+
+**Overlap in Mental Health Categories:**
+The confusion matrix shows significant overlap between similar categories, particularly "Suicidal" and "Depression." This suggests that the model struggles to differentiate between nuanced mental health conditions.
+
+**Bias Toward Larger Classes:**
+The model performs better on larger classes such as "Normal" and "Depression," while smaller classes (e.g., "Personality disorder," "Stress") are underrepresented in correct predictions.
+
+**Macro vs. Weighted Averages:**
+The macro-average metrics are significantly lower than the weighted averages, indicating that performance on smaller classes is disproportionately poor.
+
+# Conclusion:
+
+**Fix Class Imbalance:** The model needs more data for smaller groups like "Personality disorder" and "Stress" or adjustments to treat all groups more equally.
+
+**Improve Differentiation:** The model confuses similar categories, like "Suicidal" and "Depression," so it may need better input features or more detailed training examples.
+
+**Focus on Smaller Groups:** We need to make sure the model recognizes less common categories better, not just the big ones like "Normal" or "Depression".
+
+![Unknown-3](https://github.com/user-attachments/assets/d0d4c85a-0ef2-4015-8ef9-4d5278939d46)
+
