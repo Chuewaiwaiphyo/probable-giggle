@@ -45,6 +45,8 @@ Extremely low recall for "Personality disorder" (0.04), "Stress" (0.14), and "Su
 **F1-score:** Balances precision and recall.
 Best F1-score is for "Normal" (0.82), while other categories have lower scores, especially for underrepresented classes like "Personality disorder."
 
+The result is not good for Personality disorder, Stress and Suicidal because there are not enough data to train the model on these labels.
+
 ## Confusion Matrix Observations:
 
 **"Normal" and "Depression" dominate predictions:** "Normal" has the highest number of correct predictions (593), and "Depression" is often correctly classified (494).
@@ -52,6 +54,8 @@ Best F1-score is for "Normal" (0.82), while other categories have lower scores, 
 **Severe misclassifications for "Suicidal":** Most "Suicidal" cases are misclassified as "Depression" (285 cases).
 
 **Poor performance on minor classes:** Classes like "Personality disorder" and "Stress" suffer from low recall and high misclassification rates, likely due to class imbalance.
+
+The model is biased predicting towards to depression and normal and against Suicidal as the model predicted wrong for most suicidal cases.
 
 # Key Observations:
 
@@ -64,16 +68,16 @@ The confusion matrix shows significant overlap between similar categories, parti
 **Bias Toward Larger Classes:**
 The model performs better on larger classes such as "Normal" and "Depression," while smaller classes (e.g., "Personality disorder," "Stress") are underrepresented in correct predictions.
 
-**Macro vs. Weighted Averages:**
-The macro-average metrics are significantly lower than the weighted averages, indicating that performance on smaller classes is disproportionately poor.
 
 # Conclusion:
 
-**Fix Class Imbalance:** The model needs more data for smaller groups like "Personality disorder" and "Stress" or adjustments to treat all groups more equally.
+**Handle Class Imbalance:** The model needs more data for smaller groups like "Personality disorder" and "Stress" or adjustments to treat all groups more equally by oversampling or undersampling.
 
 **Improve Differentiation:** The model confuses similar categories, like "Suicidal" and "Depression," so it may need better input features or more detailed training examples.
 
 **Focus on Smaller Groups:** We need to make sure the model recognizes less common categories better, not just the big ones like "Normal" or "Depression".
+
+We should check how well the model predicts on other labels if we dismiss “Depression” and “Suicidal”.
 
 ![Unknown-3](https://github.com/user-attachments/assets/d0d4c85a-0ef2-4015-8ef9-4d5278939d46)
 
